@@ -7,11 +7,12 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        ArrayList<Abiturient> abiturients = Util.excelReader("D:\\excel\\students.xls");
-        System.out.println(abiturients);
+        ArrayList<Abiturient> abiturients = Util.excelReader("D:\\excel\\students.xls"); // array Abiturient get values from excelReader method
         for(Abiturient a: abiturients){
+            System.out.println(a.getName());
+            System.out.println(a.getBalls());
             System.out.println(a.getType());
-
+            System.out.println();
         }
     }
 }

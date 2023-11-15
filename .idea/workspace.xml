@@ -88,13 +88,21 @@
       <option name="project" value="LOCAL" />
       <updated>1699796982727</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="added education type construction(only worked with output, need practic with education type class)">
+      <created>1699865622661</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1699865622661</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initional commit" />
     <MESSAGE value="added ignore .idea/ in .gitignore" />
     <MESSAGE value="added basic classes and english comments for starting development" />
-    <option name="LAST_COMMIT_MESSAGE" value="added basic classes and english comments for starting development" />
+    <MESSAGE value="added education type construction(only worked with output, need practic with education type class)" />
+    <option name="LAST_COMMIT_MESSAGE" value="added education type construction(only worked with output, need practic with education type class)" />
   </component>
 </project>
