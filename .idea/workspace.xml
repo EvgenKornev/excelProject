@@ -6,9 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="9477ab04-184f-4085-8960-99070ab1be5f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/Excel/Abiturient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Excel/Abiturient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/Excel/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Excel/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/Excel/Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Excel/Util.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/Excel/educationType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Excel/educationType.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,19 +45,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_directory_selection": "C:/Users/evgen/IdeaProjects/excelProjectDemo/src/main/java/org/Excel",
-    "last_opened_file_path": "C:/Users/evgen/IdeaProjects/untitled3",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.intentionPowerPack"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/evgen/IdeaProjects/excelProjectDemo/src/main/java/org/Excel&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/evgen/IdeaProjects/excelProjectDemo&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.intentionPowerPack&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -95,14 +95,32 @@
       <option name="project" value="LOCAL" />
       <updated>1699865622661</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="added education type construction(only worked with output, need practic with education type class)">
+      <created>1700039745090</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1700039745090</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initional commit" />
     <MESSAGE value="added ignore .idea/ in .gitignore" />
     <MESSAGE value="added basic classes and english comments for starting development" />
-    <MESSAGE value="added education type construction(only worked with output, need practic with education type class)" />
-    <option name="LAST_COMMIT_MESSAGE" value="added education type construction(only worked with output, need practic with education type class)" />
+    <MESSAGE value="added education type output, bugs fixed, added comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="added education type output, bugs fixed, added comments" />
   </component>
 </project>

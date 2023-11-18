@@ -23,7 +23,7 @@ public class Util {
 
 
         ArrayList<Abiturient> abiturients = new ArrayList<>();
-        for(int i = 0; i < 10; i++){ // read info from cells
+        for (int i = 0; i < 10; i++) { // read info from cells
             HSSFRow row = excelSheet.getRow(i);
             String name = row.getCell(0).getStringCellValue();
 
@@ -37,7 +37,7 @@ public class Util {
 
             educationType type = null;
 
-            switch (educat){ //switch education type construction
+            switch (educat) { //switch education type construction
                 case "целевое":
                     type = TARGET;
                     break;
@@ -51,7 +51,7 @@ public class Util {
                     break;
             }
 
-            Abiturient abiturient = new Abiturient(name, (int)(math_ball + phys_ball + lang_ball), type);
+            Abiturient abiturient = new Abiturient(name, (int) (math_ball + phys_ball + lang_ball), type);
             abiturients.add(abiturient);
 
         }

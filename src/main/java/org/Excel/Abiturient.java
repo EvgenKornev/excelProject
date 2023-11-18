@@ -29,7 +29,7 @@ public class Abiturient {
         this.type = type;
     }
 
-    public Abiturient(String name, int balls, educationType type){
+    public Abiturient(String name, int balls, educationType type) {
         this.name = name;
         this.balls = balls;
         this.type = type;
