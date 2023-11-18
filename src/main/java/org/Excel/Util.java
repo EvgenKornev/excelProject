@@ -1,16 +1,12 @@
 package org.Excel;
 
-import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
 
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static org.Excel.educationType.*;
@@ -25,15 +21,15 @@ public class Util {
         ArrayList<Abiturient> abiturients = new ArrayList<>();
         for (int i = 0; i < 10; i++) { // read info from cells
             HSSFRow row = excelSheet.getRow(i);
-            String name = row.getCell(0).getStringCellValue();
+            String name = row.getCell(0).getStringCellValue(); // row of name
 
-            double math_ball = row.getCell(1).getNumericCellValue();
+            double math_ball = row.getCell(1).getNumericCellValue();//    }
+                                                                            //   |
+            double phys_ball = row.getCell(2).getNumericCellValue();//     } rows of balls
+                                                                            //   |
+            double lang_ball = row.getCell(3).getNumericCellValue();//    }
 
-            double phys_ball = row.getCell(2).getNumericCellValue();
-
-            double lang_ball = row.getCell(3).getNumericCellValue();
-
-            String educat = row.getCell(4).getStringCellValue();
+            String educat = row.getCell(4).getStringCellValue(); // row of education type
 
             educationType type = null;
 
