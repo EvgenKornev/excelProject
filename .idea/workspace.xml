@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9477ab04-184f-4085-8960-99070ab1be5f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+    <list default="true" id="9477ab04-184f-4085-8960-99070ab1be5f" name="Changes" comment="added class Graphic Interface by helping of ChatGPT and remade cycle for in class Util">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/Excel/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Excel/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/Excel/Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Excel/Util.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/Excel/Calculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Excel/Calculator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/Excel/GraphicInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Excel/GraphicInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +108,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700297334255</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="added class Graphic Interface by helping of ChatGPT and remade cycle for in class Util">
+      <option name="closed" value="true" />
+      <created>1700423115508</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1700423115508</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -129,6 +136,7 @@
     <MESSAGE value="added basic classes and english comments for starting development" />
     <MESSAGE value="added education type output, bugs fixed, added comments" />
     <MESSAGE value="added new class Calculator which checks students and takes a certain number of suitable ones" />
-    <option name="LAST_COMMIT_MESSAGE" value="added new class Calculator which checks students and takes a certain number of suitable ones" />
+    <MESSAGE value="added class Graphic Interface by helping of ChatGPT and remade cycle for in class Util" />
+    <option name="LAST_COMMIT_MESSAGE" value="added class Graphic Interface by helping of ChatGPT and remade cycle for in class Util" />
   </component>
 </project>
