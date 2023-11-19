@@ -4,7 +4,6 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,28 +11,27 @@ import java.util.ArrayList;
 import static org.Excel.educationType.*;
 
 public class Util {
-    public static ArrayList<Abiturient> excelReader(String file) throws IOException { // this method read info from excel file and return this in Abiturient
-
-        HSSFWorkbook excelBook = new HSSFWorkbook(new FileInputStream(file)); //creating workbook and choosing path to the reading file
-        HSSFSheet excelSheet = excelBook.getSheet("1"); // get access to sheet in excel file
-
+    public static ArrayList<Abiturient> excelReader(String file) throws IOException {
+        HSSFWorkbook excelBook = new HSSFWorkbook(new FileInputStream(file));
+        HSSFSheet excelSheet = excelBook.getSheet("1");
 
         ArrayList<Abiturient> abiturients = new ArrayList<>();
-        for (int i = 0; i < 10; i++) { // read info from cells
-            HSSFRow row = excelSheet.getRow(i);
-            String name = row.getCell(0).getStringCellValue(); // row of name
+        int rowIndex = 0;
 
-            double math_ball = row.getCell(1).getNumericCellValue();//    }
-                                                                            //   |
-            double phys_ball = row.getCell(2).getNumericCellValue();//     } rows of balls
-                                                                            //   |
-            double lang_ball = row.getCell(3).getNumericCellValue();//    }
+        while (true) {
+            HSSFRow row = excelSheet.getRow(rowIndex);
+            if (row == null || row.getCell(0) == null || row.getCell(0).getStringCellValue().isEmpty()) {
+                break;  // Прерываем цикл, если достигнут конец файла или встречена пустая строка
+            }
 
-            String educat = row.getCell(4).getStringCellValue(); // row of education type
+            String name = row.getCell(0).getStringCellValue();
+            double math_ball = row.getCell(1).getNumericCellValue();
+            double phys_ball = row.getCell(2).getNumericCellValue();
+            double lang_ball = row.getCell(3).getNumericCellValue();
+            String educat = row.getCell(4).getStringCellValue();
 
             educationType type = null;
-
-            switch (educat) { //switch education type construction
+            switch (educat) {
                 case "целевое":
                     type = TARGET;
                     break;
@@ -50,8 +48,9 @@ public class Util {
             Abiturient abiturient = new Abiturient(name, (int) (math_ball + phys_ball + lang_ball), type);
             abiturients.add(abiturient);
 
+            rowIndex++;
         }
+
         return abiturients;
     }
-
 }
