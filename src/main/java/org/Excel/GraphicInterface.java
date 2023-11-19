@@ -18,7 +18,7 @@ public class GraphicInterface {
     private int maxStudents;
 
     private GraphicInterface() {
-        frame = new JFrame("Excel Project Interface");
+        frame = new JFrame("Выборка студентов из абитуриентов");
         frame.setSize(400, 300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -26,9 +26,9 @@ public class GraphicInterface {
         JScrollPane scrollPane = new JScrollPane(outputTextArea);
         outputTextArea.setEditable(false);
 
-        JButton readButton = new JButton("Read Excel");
-        JButton calculateButton = new JButton("Calculate");
-        JButton writeButton = new JButton("Write Excel");
+        JButton readButton = new JButton("Прочитать Excel файл");
+        JButton calculateButton = new JButton("Рассчитать");
+        JButton writeButton = new JButton("Сохранить");
 
         // В методе actionPerformed класса GraphicInterface для кнопки "Read Excel"
         readButton.addActionListener(new ActionListener() {
@@ -45,20 +45,20 @@ public class GraphicInterface {
                         File selectedFile = fileChooser.getSelectedFile();
                         ArrayList<Abiturient> abiturients = Util.excelReader(selectedFile.getAbsolutePath());
 
-                        displayOutput("Excel read successfully");
+                        displayOutput("Успешное чтение файла Excel");
 
                         for (Abiturient abiturient : abiturients) {
                             displayOutput(formatStudentOutput(abiturient));
                         }
                     }
                 } catch (IOException ex) {
-                    displayOutput("Error reading Excel");
+                    displayOutput("Ошибка прочетния файла Excel");
                     ex.printStackTrace();
                 }
             }
 
             private String formatStudentOutput(Abiturient student) {
-                return "Selected student: " + student.getName() + " Balls: " + student.getBalls() + " Type: " + student.getType();
+                return "Студент: " + student.getName() + " Баллы: " + student.getBalls() + " Тип: " + student.getType();
             }
 
         });
@@ -77,9 +77,9 @@ public class GraphicInterface {
                     outputTextArea.setText(""); // Очищаем текстовую область перед новым выводом
 
                     displayOutput(formatCalculateOutput(selectedStudents));
-                    displayOutput("Calculation completed");
+                    displayOutput("Произведена выборка");
                 } catch (IOException ex) {
-                    displayOutput("Error reading Excel");
+                    displayOutput("Ошибка чтения файла Excel");
                     ex.printStackTrace();
                 }
             }
@@ -109,7 +109,7 @@ public class GraphicInterface {
                         displayOutput(formatWriteOutput(filePath));
                     }
                 } catch (IOException ex) {
-                    displayOutput("Error writing Excel");
+                    displayOutput("Ошибка записи файла Excel");
                     ex.printStackTrace();
                 }
             }
@@ -128,36 +128,36 @@ public class GraphicInterface {
     }
 
     private String formatCalculateOutput(ArrayList<Abiturient> students) {
-        StringBuilder output = new StringBuilder("Selected students:\n");
+        StringBuilder output = new StringBuilder("Выбранные студенты:\n");
         for (Abiturient student : students) {
-            output.append("Name: ").append(student.getName())
-                    .append(" Balls: ").append(student.getBalls())
-                    .append(" Type: ").append(student.getType()).append("\n");
+            output.append("Имя: ").append(student.getName())
+                    .append(" Баллы: ").append(student.getBalls())
+                    .append(" Тип: ").append(student.getType()).append("\n");
         }
         return output.toString();
     }
 
     private String formatWriteOutput(String filePath) {
-        return "Excel write completed. File saved to: " + filePath;
+        return "Успешно сохранено. Файл записан в: " + filePath;
     }
 
 
     private void requestUserInput() {
         try {
             // Запрос максимального числа студентов у пользователя
-            String maxStudentsInput = JOptionPane.showInputDialog(frame, "Enter the maximum number of students (maxStudents):");
+            String maxStudentsInput = JOptionPane.showInputDialog(frame, "Введите максимальное количество всех студентов");
             maxStudents = Integer.parseInt(maxStudentsInput);
 
             // Запрос максимального числа целевых студентов у пользователя
-            String maxTargetInput = JOptionPane.showInputDialog(frame, "Enter the maximum number of target students (maxTarget):");
+            String maxTargetInput = JOptionPane.showInputDialog(frame, "Введите максимальное количество студентов-целевиков:");
             maxTarget = Integer.parseInt(maxTargetInput);
 
             // Запрос максимального числа бюджетных студентов у пользователя
-            String maxFreeyerInput = JOptionPane.showInputDialog(frame, "Enter the maximum number of free students (maxFreeyer):");
+            String maxFreeyerInput = JOptionPane.showInputDialog(frame, "Введите максимальное количество студентов-бюджетников");
             maxFreeyer = Integer.parseInt(maxFreeyerInput);
         } catch (NumberFormatException e) {
             // Обработка ошибки ввода (например, если пользователь ввел не число)
-            JOptionPane.showMessageDialog(frame, "Invalid input. Please enter numeric values.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(frame, "Неправильный ввод. Пожалуйста, введите числовое значение", "Ошибка", JOptionPane.ERROR_MESSAGE);
         }
     }
 
