@@ -16,6 +16,11 @@ public class GraphicInterface {
     private int maxTarget;
     private int maxFreeyer;
     private int maxStudents;
+    private boolean fileChosen = false; // Флаг для отслеживания выбора файла
+    private boolean calculationsPerformed = false; // Флаг для отслеживания выполнения вычислений
+
+    private JButton calculateButton; // Объявляем поле, чтобы иметь доступ к нему в других методах
+    private JButton writeButton; // Объявляем поле, чтобы иметь доступ к нему в других методах
 
     private GraphicInterface() {
         frame = new JFrame("Выборка студентов из абитуриентов");
@@ -27,8 +32,12 @@ public class GraphicInterface {
         outputTextArea.setEditable(false);
 
         JButton readButton = new JButton("Прочитать Excel файл");
-        JButton calculateButton = new JButton("Рассчитать");
-        JButton writeButton = new JButton("Сохранить");
+        calculateButton = new JButton("Рассчитать");
+        writeButton = new JButton("Сохранить");
+
+        // Начально делаем кнопку "Рассчитать" и "Сохранить" неактивными
+        calculateButton.setEnabled(false);
+        writeButton.setEnabled(false);
 
         // В методе actionPerformed класса GraphicInterface для кнопки "Read Excel"
         readButton.addActionListener(new ActionListener() {
@@ -50,6 +59,10 @@ public class GraphicInterface {
                         for (Abiturient abiturient : abiturients) {
                             displayOutput(formatStudentOutput(abiturient));
                         }
+
+                        // Устанавливаем флаг, что файл был выбран
+                        fileChosen = true;
+                        enableCalculateButton(); // Проверяем, нужно ли включить кнопку "Рассчитать"
                     }
                 } catch (IOException ex) {
                     displayOutput("Ошибка прочетния файла Excel");
@@ -62,7 +75,6 @@ public class GraphicInterface {
             }
 
         });
-
 
         calculateButton.addActionListener(new ActionListener() {
             @Override
@@ -78,13 +90,16 @@ public class GraphicInterface {
 
                     displayOutput(formatCalculateOutput(selectedStudents));
                     displayOutput("Произведена выборка");
+
+                    // Устанавливаем флаг, что вычисления выполнены
+                    calculationsPerformed = true;
+                    enableWriteButton(); // Проверяем, нужно ли включить кнопку "Сохранить"
                 } catch (IOException ex) {
                     displayOutput("Ошибка чтения файла Excel");
                     ex.printStackTrace();
                 }
             }
         });
-
 
         writeButton.addActionListener(new ActionListener() {
             @Override
@@ -115,7 +130,6 @@ public class GraphicInterface {
             }
         });
 
-
         JPanel panel = new JPanel();
         panel.setLayout(new FlowLayout());
         panel.add(readButton);
@@ -125,6 +139,22 @@ public class GraphicInterface {
         frame.add(scrollPane, BorderLayout.CENTER);
         frame.add(panel, BorderLayout.SOUTH);
         frame.setVisible(true);
+    }
+
+    private void enableCalculateButton() {
+        if (fileChosen) {
+            calculateButton.setEnabled(true);
+        } else {
+            calculateButton.setEnabled(false);
+        }
+    }
+
+    private void enableWriteButton() {
+        if (calculationsPerformed) {
+            writeButton.setEnabled(true);
+        } else {
+            writeButton.setEnabled(false);
+        }
     }
 
     private String formatCalculateOutput(ArrayList<Abiturient> students) {
@@ -141,7 +171,6 @@ public class GraphicInterface {
         return "Успешно сохранено. Файл записан в: " + filePath;
     }
 
-
     private void requestUserInput() {
         try {
             // Запрос максимального числа студентов у пользователя
@@ -155,6 +184,10 @@ public class GraphicInterface {
             // Запрос максимального числа бюджетных студентов у пользователя
             String maxFreeyerInput = JOptionPane.showInputDialog(frame, "Введите максимальное количество студентов-бюджетников");
             maxFreeyer = Integer.parseInt(maxFreeyerInput);
+
+            // Сбрасываем флаг при новом запросе ввода
+            fileChosen = false;
+            enableCalculateButton(); // Проверяем, нужно ли выключить кнопку "Рассчитать"
         } catch (NumberFormatException e) {
             // Обработка ошибки ввода (например, если пользователь ввел не число)
             JOptionPane.showMessageDialog(frame, "Неправильный ввод. Пожалуйста, введите числовое значение", "Ошибка", JOptionPane.ERROR_MESSAGE);

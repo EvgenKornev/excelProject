@@ -15,6 +15,13 @@ public class Calculator {
 
         int maxPayeer = maxStudents - maxTarget - maxFreeyer;
 
+        // Приоритет целевиков перед бюджетниками
+        if (maxTarget + maxFreeyer > maxStudents) {
+            maxTarget = Math.min(maxTarget, maxStudents);
+            maxFreeyer = Math.max(0, maxStudents - maxTarget);
+            maxPayeer = 0;
+        }
+
         for (int i = 0; i < sortedAbiturients.size(); i++) {
             if (sortedAbiturients.get(i).getType() == educationType.TARGET && maxTarget > 0) {
                 students.add(sortedAbiturients.get(i));
