@@ -11,13 +11,10 @@
   <component name="ChangeListManager">
     <list default="true" id="9477ab04-184f-4085-8960-99070ab1be5f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/Excel/Abiturient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Excel/Abiturient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/Excel/Calculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Excel/Calculator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/Excel/GraphicInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Excel/GraphicInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/Excel/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Excel/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/Excel/Output.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Excel/Output.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/Excel/Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Excel/Util.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/Excel/educationType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Excel/educationType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/Excel/StartMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Excel/StartMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +45,9 @@
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 0
+}]]></component>
   <component name="ProjectId" id="2Y4qksJHp1WE6z65otGM3cXpdjB" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">

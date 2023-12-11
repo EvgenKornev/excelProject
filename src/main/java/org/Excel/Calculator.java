@@ -32,9 +32,9 @@ public class Calculator {
 
 
         // Приоритет целевиков перед бюджетниками
-        if (maxTarget + maxFreeyer > maxStudents) {
-            maxTarget = Math.min(maxTarget, maxStudents);
-            maxFreeyer = Math.max(0, maxStudents - maxTarget);
+        if (maxTarget + maxFreeyer > maxStudents) { // 100 + 100 > 100 !
+            maxTarget = Math.min(maxTarget, maxStudents); // ... = 100 || 100 = 100!
+            maxFreeyer = Math.max(0, maxStudents - maxTarget);  // 0, 100 - 100
             maxPayeer = 0;
         }
 
@@ -62,20 +62,14 @@ public class Calculator {
             if (maxTarget > 0) {
                 //students.add(new Abiturient("Свободное место", 0, educationType.TARGET));
                 maxTarget--;
-                acceptedTarget--;
-                acceptedTotal--;
                 freeSpace++;
             } else if (maxFreeyer > 0) {
                 //students.add(new Abiturient("Свободное место", 0, educationType.FREEYER));
                 maxFreeyer--;
-                acceptedFreeyer--;
-                acceptedTotal--;
                 freeSpace++;
             } else if (maxPayeer > 0) {
                 //students.add(new Abiturient("Свободное место", 0, educationType.PAYYER));
                 maxPayeer--;
-                acceptedPayeer--;
-                acceptedTotal--;
                 freeSpace++;
             } else {
                 break; // Если свободных мест больше нет, выходим из цикла
