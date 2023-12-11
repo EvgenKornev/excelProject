@@ -1,3 +1,5 @@
+//Описание: Представляет абитуриента с полями для имени,
+// баллов и типа обучения.
 package org.Excel;
 
 public class Abiturient {
@@ -21,8 +23,22 @@ public class Abiturient {
         this.balls = balls;
     }
 
-    public educationType getType() {
+    public educationType getType(){
         return type;
+    }
+    public String getOuputType() {
+        if(type == educationType.TARGET){
+            String outputType = "целевик";
+            return outputType;
+        } else if (type == educationType.FREEYER) {
+            String outputType = "бюджетник";
+            return outputType;
+        }
+        else{
+            String outputType = "платник";
+            return outputType;
+        }
+
     }
 
     public void setType(educationType type) {

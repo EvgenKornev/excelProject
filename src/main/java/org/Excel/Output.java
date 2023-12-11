@@ -1,3 +1,4 @@
+//Описание: Записывает данные в файл Excel.
 package org.Excel;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -11,6 +12,8 @@ import java.io.IOException;
 
 
 public class Output {
+    //Метод excelWriter создает новый файл Excel,
+    // записывает данные о студентах в него и сохраняет файл.
     public static void excelWriter(String file) throws IOException {
         HSSFWorkbook book = new HSSFWorkbook();
         Sheet sheet = book.createSheet("1");

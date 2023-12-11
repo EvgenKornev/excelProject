@@ -1,3 +1,8 @@
+//Описание: Создает графический интерфейс приложения с
+// кнопками для чтения, вычисления и записи данных.
+
+
+
 package org.Excel;
 
 import javax.swing.*;
@@ -9,11 +14,14 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class GraphicInterface {
-    private JFrame frame;
+
+public class GraphicInterface extends JFrame {
+    private JFrame mainframe; //general container
     private JTextArea outputTextArea;
     private ArrayList<Abiturient> selectedStudents;
-    private int maxTarget;
+
+    private File selectedFile;
+    public int maxTarget;
     private int maxFreeyer;
     private int maxStudents;
     private boolean fileChosen = false; // Флаг для отслеживания выбора файла
@@ -22,10 +30,13 @@ public class GraphicInterface {
     private JButton calculateButton; // Объявляем поле, чтобы иметь доступ к нему в других методах
     private JButton writeButton; // Объявляем поле, чтобы иметь доступ к нему в других методах
 
-    private GraphicInterface() {
-        frame = new JFrame("Выборка студентов из абитуриентов");
-        frame.setSize(400, 300);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    GraphicInterface() {
+
+
+        mainframe = new JFrame("Выборка студентов из абитуриентов");
+        mainframe.setSize(500, 400);
+        mainframe.setLocationRelativeTo(null);
+        mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         outputTextArea = new JTextArea(10, 30);
         JScrollPane scrollPane = new JScrollPane(outputTextArea);
@@ -39,6 +50,39 @@ public class GraphicInterface {
         calculateButton.setEnabled(false);
         writeButton.setEnabled(false);
 
+        JMenuBar menuBar = new JMenuBar();
+
+        JMenu generalMenu = new JMenu("Информация");
+
+        JMenuItem aboutAuthor = new JMenuItem("Об Авторе");
+        JMenuItem aboutProgram = new JMenuItem("О программе");
+
+        generalMenu.add(aboutAuthor);
+        generalMenu.add(aboutProgram);
+
+        menuBar.add(generalMenu);
+
+        mainframe.setJMenuBar(menuBar);
+
+        aboutProgram.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ProgramMenu().setVisible(true);
+            }
+        });
+        aboutAuthor.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new AuthorMenu().setVisible(true);
+                //mainframe.dispose();
+
+
+
+
+            }
+        });
+
+
         // В методе actionPerformed класса GraphicInterface для кнопки "Read Excel"
         readButton.addActionListener(new ActionListener() {
             @Override
@@ -49,9 +93,9 @@ public class GraphicInterface {
                     fileChooser.setDialogTitle("Выберите файл Excel");
                     fileChooser.setFileFilter(new FileNameExtensionFilter("Excel files", "xls"));
 
-                    int result = fileChooser.showOpenDialog(frame);
+                    int result = fileChooser.showOpenDialog(mainframe);
                     if (result == JFileChooser.APPROVE_OPTION) {
-                        File selectedFile = fileChooser.getSelectedFile();
+                        selectedFile = fileChooser.getSelectedFile();
                         ArrayList<Abiturient> abiturients = Util.excelReader(selectedFile.getAbsolutePath());
 
                         displayOutput("Успешное чтение файла Excel");
@@ -71,7 +115,7 @@ public class GraphicInterface {
             }
 
             private String formatStudentOutput(Abiturient student) {
-                return "Студент: " + student.getName() + " Баллы: " + student.getBalls() + " Тип: " + student.getType();
+                return "Абитуриент: " + student.getName() + " Баллы: " + student.getBalls() + " Тип: " + student.getOuputType();
             }
 
         });
@@ -80,16 +124,22 @@ public class GraphicInterface {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
+
                     // Запрашиваем значения у пользователя
                     requestUserInput();
 
-                    ArrayList<Abiturient> abiturients = Util.excelReader("D:\\excel\\students.xls");
+                    ArrayList<Abiturient> abiturients = Util.excelReader(selectedFile.getAbsolutePath());
                     selectedStudents = Calculator.selection(abiturients, maxTarget, maxFreeyer, maxStudents);
 
                     outputTextArea.setText(""); // Очищаем текстовую область перед новым выводом
 
                     displayOutput(formatCalculateOutput(selectedStudents));
                     displayOutput("Произведена выборка");
+                    displayOutput("Общее количество принятых студентов: " + String.valueOf(Calculator.acceptedTotal));
+                    displayOutput("Количество принятых целевиков: " + String.valueOf(Calculator.acceptedTarget));
+                    displayOutput("Количество принятых бюджетников: " + String.valueOf(Calculator.acceptedFreeyer));
+                    displayOutput("Количество принятых платников: " + String.valueOf(Calculator.acceptedPayeer));
+                    displayOutput("Количество свободных мест: " + String.valueOf(Calculator.freeSpace));
 
                     // Устанавливаем флаг, что вычисления выполнены
                     calculationsPerformed = true;
@@ -110,7 +160,7 @@ public class GraphicInterface {
                     fileChooser.setDialogTitle("Выберите место сохранения Excel файла");
                     fileChooser.setFileFilter(new FileNameExtensionFilter("Excel files", "xls"));
 
-                    int result = fileChooser.showSaveDialog(frame);
+                    int result = fileChooser.showSaveDialog(mainframe);
                     if (result == JFileChooser.APPROVE_OPTION) {
                         File selectedFile = fileChooser.getSelectedFile();
                         String filePath = selectedFile.getAbsolutePath();
@@ -136,9 +186,10 @@ public class GraphicInterface {
         panel.add(calculateButton);
         panel.add(writeButton);
 
-        frame.add(scrollPane, BorderLayout.CENTER);
-        frame.add(panel, BorderLayout.SOUTH);
-        frame.setVisible(true);
+        mainframe.add(scrollPane, BorderLayout.CENTER);
+        mainframe.add(panel, BorderLayout.SOUTH);
+        mainframe.setVisible(true);
+
     }
 
     private void enableCalculateButton() {
@@ -160,9 +211,9 @@ public class GraphicInterface {
     private String formatCalculateOutput(ArrayList<Abiturient> students) {
         StringBuilder output = new StringBuilder("Выбранные студенты:\n");
         for (Abiturient student : students) {
-            output.append("Имя: ").append(student.getName())
+            output.append("Студент: ").append(student.getName())
                     .append(" Баллы: ").append(student.getBalls())
-                    .append(" Тип: ").append(student.getType()).append("\n");
+                    .append(" Тип: ").append(student.getOuputType()).append("\n");
         }
         return output.toString();
     }
@@ -174,15 +225,15 @@ public class GraphicInterface {
     private void requestUserInput() {
         try {
             // Запрос максимального числа студентов у пользователя
-            String maxStudentsInput = JOptionPane.showInputDialog(frame, "Введите максимальное количество всех студентов");
+            String maxStudentsInput = JOptionPane.showInputDialog(mainframe, "Введите максимальное количество всех студентов");
             maxStudents = Integer.parseInt(maxStudentsInput);
 
             // Запрос максимального числа целевых студентов у пользователя
-            String maxTargetInput = JOptionPane.showInputDialog(frame, "Введите максимальное количество студентов-целевиков:");
+            String maxTargetInput = JOptionPane.showInputDialog(mainframe, "Введите максимальное количество студентов-целевиков:");
             maxTarget = Integer.parseInt(maxTargetInput);
 
             // Запрос максимального числа бюджетных студентов у пользователя
-            String maxFreeyerInput = JOptionPane.showInputDialog(frame, "Введите максимальное количество студентов-бюджетников");
+            String maxFreeyerInput = JOptionPane.showInputDialog(mainframe, "Введите максимальное количество студентов-бюджетников");
             maxFreeyer = Integer.parseInt(maxFreeyerInput);
 
             // Сбрасываем флаг при новом запросе ввода
@@ -190,7 +241,7 @@ public class GraphicInterface {
             enableCalculateButton(); // Проверяем, нужно ли выключить кнопку "Рассчитать"
         } catch (NumberFormatException e) {
             // Обработка ошибки ввода (например, если пользователь ввел не число)
-            JOptionPane.showMessageDialog(frame, "Неправильный ввод. Пожалуйста, введите числовое значение", "Ошибка", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(mainframe, "Неправильный ввод. Пожалуйста, введите числовое значение", "Ошибка", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -207,3 +258,4 @@ public class GraphicInterface {
         });
     }
 }
+

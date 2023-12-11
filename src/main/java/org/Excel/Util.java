@@ -1,3 +1,5 @@
+//Описание: Отвечает за чтение данных из файла Excel
+// и преобразование их в список абитуриентов.
 package org.Excel;
 
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -11,7 +13,12 @@ import java.util.ArrayList;
 import static org.Excel.educationType.*;
 
 public class Util {
+    //Метод excelReader использует библиотеку Apache POI
+    // для чтения данных из Excel-файла.
+    // Информация о каждом абитуриенте представляется в виде
+    // объекта Abiturient и добавляется в список.
     public static ArrayList<Abiturient> excelReader(String file) throws IOException {
+
         HSSFWorkbook excelBook = new HSSFWorkbook(new FileInputStream(file));
         HSSFSheet excelSheet = excelBook.getSheet("1");
 
