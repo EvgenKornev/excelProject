@@ -1,17 +1,20 @@
-/**
- *
- * @author zayat
- */
+
 
 package org.Excel;
 import java.awt.*;
 import java.util.Timer;
 import java.util.TimerTask;
-
+/**
+ * Класс StartPage представляет главное окно приложения,
+ * отображающее информацию о студенте и запускающее главное окно программы.
+ *@author Kornev E.A.
+ *@version 1.0.0
+ */
 public class StartPage extends javax.swing.JFrame {
     Timer timer = new Timer();
     /**
-     * Creates new form NewJFrame
+     * Создает новый объект класса StartPage.
+     * Устанавливает таймер для автоматического завершения программы через 60 секунд.
      */
     public StartPage() {
 
@@ -51,7 +54,7 @@ public class StartPage extends javax.swing.JFrame {
     }
 
     /**
-     * Method that sets bindings for class fields from the side of the graphic part.
+     * Инициализирует компоненты графического интерфейса.
      */
     private void initComponents() {
 
@@ -300,15 +303,21 @@ public class StartPage extends javax.swing.JFrame {
         pack();
     }
 
-
+    /**
+     * Обработчик события кнопки "Выход".
+     * Завершает программу при нажатии на кнопку "Выход".
+     *
+     * @param evt Событие кнопки
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
         System.exit(0);
     }
 
     /**
-     * A button event creates a mainwindow object, displays it, ends the delayed exit process, and hides the current window.
+     * Обработчик события кнопки "Запустить".
+     * Запускает главное окно программы и отменяет задачу таймера.
      *
-     * @param evt Event
+     * @param evt Событие кнопки
      */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
         GraphicInterface.run();
@@ -317,12 +326,7 @@ public class StartPage extends javax.swing.JFrame {
         dispose();
     }
 
-    /**
-     * Point of entry
-     * Installs look and feel on Windows
-     *
-     * @param args the command line arguments
-     */
+
     //public static void main(String args[]) {
         //* Set the Windows look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code ">

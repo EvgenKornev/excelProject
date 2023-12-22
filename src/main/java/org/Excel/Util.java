@@ -11,12 +11,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import static org.Excel.educationType.*;
-
+/**
+ * Класс, отвечающий за чтение данных из файла Excel и преобразование их в список абитуриентов.
+ * @author Kornev E.A.
+ * @version 1.0.0
+ */
 public class Util {
-    //Метод excelReader использует библиотеку Apache POI
-    // для чтения данных из Excel-файла.
-    // Информация о каждом абитуриенте представляется в виде
-    // объекта Abiturient и добавляется в список.
+    /**
+     * Метод excelReader использует библиотеку Apache POI для чтения данных из Excel-файла.
+     * Информация о каждом абитуриенте представляется в виде объекта Abiturient и добавляется в список.
+     *
+     * @param file Путь к файлу Excel
+     * @return Список абитуриентов, прочитанных из файла
+     * @throws IOException В случае ошибки чтения файла
+     */
     public static ArrayList<Abiturient> excelReader(String file) throws IOException {
 
         HSSFWorkbook excelBook = new HSSFWorkbook(new FileInputStream(file));
@@ -61,3 +69,4 @@ public class Util {
         return abiturients;
     }
 }
+

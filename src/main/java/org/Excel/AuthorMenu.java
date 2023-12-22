@@ -8,9 +8,25 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URI;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.net.URI;
+
+/**
+ * Класс AuthorMenu представляет окно с информацией об авторе.
+ *@author Kornev E.A.
+ *@version 1.0.0
+ */
 public class AuthorMenu extends JFrame {
     public JButton authorButton;
 
+    /**
+     * Конструктор класса AuthorMenu.
+     */
     public AuthorMenu() {
         this.setTitle("Об Авторе");
         this.setSize(260, 462);
@@ -69,7 +85,11 @@ public class AuthorMenu extends JFrame {
         });
     }
 
-    // Метод для открытия ссылки в браузере
+    /**
+     * Метод для открытия ссылки в браузере.
+     *
+     * @param url Ссылка для открытия
+     */
     private static void openWebpage(String url) {
         try {
             Desktop.getDesktop().browse(new URI(url));
@@ -78,3 +98,4 @@ public class AuthorMenu extends JFrame {
         }
     }
 }
+

@@ -8,28 +8,30 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URI;
 
+/**
+ * Класс ProgramMenu предоставляет информацию о программе и ее возможностях.
+ *@author Kornev E.A.
+ *@version 1.0.0
+ */
 public class ProgramMenu extends JFrame {
-    public JButton authorButton;
+    public JButton backButton;
 
+    /**
+     * Конструктор класса.
+     */
     public ProgramMenu() {
         this.setTitle("О программе");
         this.setSize(400, 200);
         this.setLocationRelativeTo(null);
-        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
 
-        authorButton = new JButton("Назад");
-
+        backButton = new JButton("Назад");
 
         JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-
-
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
         JPanel textPanel = new JPanel();
         textPanel.setLayout(new BoxLayout(textPanel, BoxLayout.Y_AXIS));
-
-
 
         JLabel programName = new JLabel("Программа позволяет:");
         JLabel label1 = new JLabel("1. Получать файл расширения .xls");
@@ -39,7 +41,7 @@ public class ProgramMenu extends JFrame {
         JLabel label5 = new JLabel("5. Указывать путь сохранения файла");
         JLabel label6 = new JLabel("6. Сохранять файл с расширением .xls");
 
-        authorButton.setAlignmentX(CENTER_ALIGNMENT);
+        backButton.setAlignmentX(CENTER_ALIGNMENT);
 
         textPanel.add(programName);
         textPanel.add(label1);
@@ -48,7 +50,7 @@ public class ProgramMenu extends JFrame {
         textPanel.add(label4);
         textPanel.add(label5);
         textPanel.add(label6);
-        buttonPanel.add(authorButton);
+        buttonPanel.add(backButton);
 
         mainPanel.add(textPanel);
         mainPanel.add(Box.createHorizontalStrut(12));
@@ -56,13 +58,11 @@ public class ProgramMenu extends JFrame {
 
         this.add(mainPanel);
 
-        authorButton.addActionListener(new ActionListener() {
+        backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //GraphicInterface.run();
                 dispose();
             }
         });
     }
-
 }

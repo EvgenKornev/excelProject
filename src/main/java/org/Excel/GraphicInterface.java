@@ -1,7 +1,3 @@
-//Описание: Создает графический интерфейс приложения с
-// кнопками для чтения, вычисления и записи данных.
-
-
 
 package org.Excel;
 
@@ -14,7 +10,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-
+/**
+ * Графический интерфейс приложения для выборки студентов из абитуриентов.
+ * Включает в себя функционал для чтения данных из Excel файла, проведения
+ * расчетов и сохранения результатов.
+ *@author Kornev E.A.
+ *@version 1.0.0
+ */
 public class GraphicInterface extends JFrame {
     private JFrame mainframe; //general container
     private JTextArea outputTextArea;
@@ -32,43 +34,43 @@ public class GraphicInterface extends JFrame {
     private JButton calculateButton; // Объявляем поле, чтобы иметь доступ к нему в других методах
     private JButton writeButton; // Объявляем поле, чтобы иметь доступ к нему в других методах
 
+    /**
+     * Конструктор класса GraphicInterface.
+     * Создает графический интерфейс приложения с кнопками для чтения, вычисления
+     * и записи данных. Инициализирует основные элементы интерфейса, такие как
+     * кнопки, меню, область вывода текста и обработчики событий.
+     */
     GraphicInterface() {
 
-
-
+        // Создание главного окна
         mainframe = new JFrame("Выборка студентов из абитуриентов");
         mainframe.setSize(500, 400);
         mainframe.setLocationRelativeTo(null);
         mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        // Инициализация текстовой области вывода
         outputTextArea = new JTextArea(10, 30);
         JScrollPane scrollPane = new JScrollPane(outputTextArea);
         outputTextArea.setEditable(false);
 
+        // Инициализация кнопок и их начальное состояние
         JButton readButton = new JButton("Прочитать Excel файл");
         calculateButton = new JButton("Рассчитать");
         writeButton = new JButton("Сохранить");
-
-        // Начально делаем кнопку "Рассчитать" и "Сохранить" неактивными
         calculateButton.setEnabled(false);
         writeButton.setEnabled(false);
 
+        // Инициализация меню
         JMenuBar menuBar = new JMenuBar();
-
         JMenu generalMenu = new JMenu("Информация");
-
         JMenuItem aboutAuthor = new JMenuItem("Об Авторе");
         JMenuItem aboutProgram = new JMenuItem("О программе");
-
         generalMenu.add(aboutAuthor);
         generalMenu.add(aboutProgram);
-
         menuBar.add(generalMenu);
-
         mainframe.setJMenuBar(menuBar);
-        /////////////////////
 
-
+        // Обработчики событий для пунктов меню
         aboutProgram.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -79,33 +81,24 @@ public class GraphicInterface extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new AuthorMenu().setVisible(true);
-                //mainframe.dispose();
-
-
-
-
             }
         });
 
-
-        // В методе actionPerformed класса GraphicInterface для кнопки "Read Excel"
+        // Обработчик событий для кнопки "Прочитать Excel файл"
         readButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     readButtonCounter++;
-                    // Открываем проводник для выбора файла
                     JFileChooser fileChooser = new JFileChooser();
                     fileChooser.setDialogTitle("Выберите файл Excel");
                     fileChooser.setFileFilter(new FileNameExtensionFilter("Excel files", "xls"));
-
                     int result = fileChooser.showOpenDialog(mainframe);
+
                     if (result == JFileChooser.APPROVE_OPTION) {
                         selectedFile = fileChooser.getSelectedFile();
                         ArrayList<Abiturient> abiturients = Util.excelReader(selectedFile.getAbsolutePath());
-
                         outputTextArea.setText("");
-
                         displayOutput("Успешное чтение файла Excel");
                         displayOutput("Рабочая зона " + readButtonCounter);
 
@@ -113,11 +106,8 @@ public class GraphicInterface extends JFrame {
                             displayOutput(formatStudentOutput(abiturient));
                         }
 
-                        // Устанавливаем флаг, что файл был выбран
                         fileChosen = true;
-                        enableCalculateButton(); // Проверяем, нужно ли включить кнопку "Рассчитать"
-
-                        //////
+                        enableCalculateButton();
                         maxStudents = 0;
                         maxFreeyer = 0;
                         maxTarget = 0;
@@ -133,28 +123,30 @@ public class GraphicInterface extends JFrame {
                 }
             }
 
+            /**
+             * Форматирует вывод для отображения информации об абитуриенте.
+             *
+             * @param student Абитуриент
+             * @return Строка с отформатированным выводом
+             */
             private String formatStudentOutput(Abiturient student) {
                 return "Абитуриент: " + student.getName() + " Баллы: " + student.getBalls() + " Тип: " + student.getOuputType();
             }
 
         });
 
+        // Добавление обработчика событий для кнопки "Рассчитать"
         calculateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-
-                    // Запрашиваем значения у пользователя
                     requestUserInput();
-
                     ArrayList<Abiturient> abiturients = Util.excelReader(selectedFile.getAbsolutePath());
                     selectedStudents = Calculator.selection(abiturients, maxTarget, maxFreeyer, maxStudents);
 
-                    outputTextArea.setText(""); // Очищаем текстовую область перед новым выводом
-
+                    outputTextArea.setText("");
                     displayOutput(formatCalculateOutput(selectedStudents));
                     studentsSave = selectedStudents;
-                    //selectedStudents.clear();
 
                     displayOutput("Произведена выборка");
                     displayOutput("Общее количество принятых студентов: " + String.valueOf(Calculator.acceptedTotal + " (из " + maxStudents + " заданных)"));
@@ -163,12 +155,8 @@ public class GraphicInterface extends JFrame {
                     displayOutput("Количество принятых платников: " + String.valueOf(Calculator.acceptedPayeer  + " (из " + (maxStudents - maxTarget - maxFreeyer) + " заданных)"));
                     displayOutput("Количество свободных мест: " + String.valueOf(Calculator.freeSpace ));
 
-
-
-                    // Устанавливаем флаг, что вычисления выполнены
                     calculationsPerformed = true;
-                    enableWriteButton(); // Проверяем, нужно ли включить кнопку "Сохранить"
-                    //selectedStudents.clear();
+                    enableWriteButton();
                 } catch (IOException ex) {
                     displayOutput("Ошибка чтения файла Excel");
                     ex.printStackTrace();
@@ -176,21 +164,20 @@ public class GraphicInterface extends JFrame {
             }
         });
 
+        // Добавление обработчика событий для кнопки "Сохранить"
         writeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    // Открываем проводник для выбора места сохранения файла
                     JFileChooser fileChooser = new JFileChooser();
                     fileChooser.setDialogTitle("Выберите место сохранения Excel файла");
                     fileChooser.setFileFilter(new FileNameExtensionFilter("Excel files", "xls"));
-
                     int result = fileChooser.showSaveDialog(mainframe);
+
                     if (result == JFileChooser.APPROVE_OPTION) {
                         File selectedFile = fileChooser.getSelectedFile();
                         String filePath = selectedFile.getAbsolutePath();
 
-                        // Добавляем расширение .xls, если оно не указано
                         if (!filePath.endsWith(".xls")) {
                             filePath += ".xls";
                         }
@@ -205,18 +192,20 @@ public class GraphicInterface extends JFrame {
             }
         });
 
+        // Инициализация панели с кнопками и добавление элементов на главное окно
         JPanel panel = new JPanel();
         panel.setLayout(new FlowLayout());
         panel.add(readButton);
         panel.add(calculateButton);
         panel.add(writeButton);
-
         mainframe.add(scrollPane, BorderLayout.CENTER);
         mainframe.add(panel, BorderLayout.SOUTH);
         mainframe.setVisible(true);
-
     }
-
+    /**
+     * Включает или выключает кнопку "Рассчитать" в зависимости от того, выбран
+     * ли файл Excel.
+     */
     private void enableCalculateButton() {
         if (fileChosen) {
             calculateButton.setEnabled(true);
@@ -224,7 +213,10 @@ public class GraphicInterface extends JFrame {
             calculateButton.setEnabled(false);
         }
     }
-
+    /**
+     * Включает или выключает кнопку "Сохранить" в зависимости от того, выполнены
+     * ли расчеты.
+     */
     private void enableWriteButton() {
         if (calculationsPerformed) {
             writeButton.setEnabled(true);
@@ -233,7 +225,12 @@ public class GraphicInterface extends JFrame {
             writeButton.setEnabled(false);
         }
     }
-
+    /**
+     * Форматирует вывод для отображения выбранных студентов после расчетов.
+     *
+     * @param students Список выбранных студентов
+     * @return Строка с отформатированным выводом
+     */
     private String formatCalculateOutput(ArrayList<Abiturient> students) {
         StringBuilder output = new StringBuilder("Выбранные студенты:\n");
         for (Abiturient student : students) {
@@ -243,11 +240,19 @@ public class GraphicInterface extends JFrame {
         }
         return output.toString();
     }
-
+    /**
+     * Форматирует вывод для отображения информации о сохранении файла Excel.
+     *
+     * @param filePath Путь к сохраненному файлу
+     * @return Строка с отформатированным выводом
+     */
     private String formatWriteOutput(String filePath) {
         return "Успешно сохранено. Файл записан в: " + filePath;
     }
-
+    /**
+     * Запрашивает у пользователя ввод необходимых данных для выполнения расчетов,
+     * таких как максимальное количество студентов, целевых и бюджетных мест.
+     */
     private void requestUserInput() {
         try {
             // Запрос максимального числа студентов у пользователя
